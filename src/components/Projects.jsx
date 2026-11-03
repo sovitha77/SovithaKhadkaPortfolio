@@ -1,53 +1,50 @@
-
-import React from 'react'
-import { motion } from 'framer-motion'
-import { projects } from '../assets/assets.js'
-import ProjectCard from './ProjectCard.jsx'
-import { FaArrowRight } from 'react-icons/fa'
+import React from 'react';
+// Used in JSX below; this rule may not recognize JSX member expressions.
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
+import { FaArrowRight } from 'react-icons/fa';
+import { projects } from '../assets/assets.js';
+import ProjectCard from './ProjectCard.jsx';
 
 function Projects() {
   return (
-    <div>
-   <motion.div
-    initial={{opacity:0 ,y:50}}
-      whileInView={{opacity:1, y:0}}
-      transition={{duration:0.9, ease:'easeOut'}}
-      viewport={{once:false, amount:0.2}}
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.01 }}
       id='projects'
-      className='py-20 bg-dark-200'
-   >
-    <div className='container mx-auto px-6'>
-      <h2 className='text-3xl font-bold text-center mb-4'>
-        My 
-        <span className='text-purple'>Projects</span>
-      </h2>
-      <p className='text-gray-400 text-center max-w-2xl mx-auto mb-16'>
-        A selection of my recent work
-        </p>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-         gap-8 max-w-6xl mx-auto'>
-          {/* project card */}
-          {
-            projects.map((project, index) =>(
-              <ProjectCard
-               key={index}
-               {...project}/>
-            ))
-          }
+      className='section-shell'
+    >
+      <div className='container mx-auto max-w-7xl px-6'>
+        <div className='section-heading mb-10 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between'>
+          <div>
+            <p className='section-kicker'>Things I&apos;ve built</p>
+            <h2 className='mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl'>
+              Selected <span className='text-gradient'>projects</span>
+            </h2>
+            <p className='mt-3 max-w-xl text-sm leading-6 text-slate-400 sm:text-base'>
+              A few real-world products and experiments across frontend, backend, and full-stack development.
+            </p>
+          </div>
+          <a
+            href='https://github.com/sovitha77'
+            target='_blank'
+            rel='noreferrer'
+            className='inline-flex w-fit items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-white'
+          >
+            More on GitHub <FaArrowRight aria-hidden='true' />
+          </a>
         </div>
-         <div className='text-center mt-12'>
-        <a href="#"className='inline-flex items-center
-        px-6 py-3 border border-purple rounded-lg
-        font-medium hover:bg-purple/20 transition duration-300'>
-        <span>View More Projects</span>
-        <FaArrowRight className='ml-2' />
-        </a>
-         </div>
+
+        <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3'>
+          {projects.map((project) => (
+            <ProjectCard key={project.title} {...project} />
+          ))}
+        </div>
       </div>
-    </motion.div>
-    </div>
-  )
+    </motion.section>
+  );
 }
 
-export default Projects
+export default Projects;

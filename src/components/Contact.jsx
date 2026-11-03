@@ -1,127 +1,97 @@
+import React from 'react';
+// Used in JSX below; this rule may not recognize JSX member expressions.
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
+import { FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
+import { socialLinks } from '../assets/assets';
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { FaMapMarkerAlt } from 'react-icons/fa'
-import { FaEnvelope } from 'react-icons/fa'  
-import { FaPhone } from 'react-icons/fa' 
-import { FaGithub } from 'react-icons/fa'
-import { FaLinkedin } from 'react-icons/fa'
-import { socialLinks } from '../assets/assets'
+const contactItems = [
+  {
+    icon: FaEnvelope,
+    label: 'Email',
+    value: 'khadkabinisha48@gmail.com',
+    href: 'mailto:khadkabinisha48@gmail.com',
+  },
+  {
+    icon: FaPhone,
+    label: 'Phone',
+    value: '+977 9846900867',
+    href: 'tel:+9779846900867',
+  },
+  {
+    icon: FaMapMarkerAlt,
+    label: 'Location',
+    value: 'Kathmandu, Nepal',
+  },
+];
 
-const Contact = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, ease: 'easeOut' }}
-      viewport={{ once: false, amount: 0.2 }}
-      id='contact'  
-      className='py-20 bg-dark-200'
-    >
-    <div className='container mx-auto px-6'>
-      <h2 className='text-3xl font-bold text-center mb-4'>
-        Get in 
-        <span className='text-purple'> Touch</span>
-      </h2>
-      <p className='text-gray-400 text-center max-w-2xl mx-auto mb-16'>
-        I'm open to new opportunities and collaborations. 
-        Feel free to reach out to me via connect with me on social media or phone Number.
-      </p>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto'>
-      {/* contact form */}
-      <div>
-        <form className='space-y-6'>
-          <div>
-            <label htmlFor='name' className='block text-gray-300 mb-2'>Your Name</label>
-            <input
-            className='w-full bg-dark-300 rounded-lg
-            px-4 py-3 outline-none '
-            type="text"
-            />
-          </div>
+const Contact = () => (
+  <motion.section
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.65, ease: 'easeOut' }}
+    viewport={{ once: true, amount: 0.05 }}
+    id='contact'
+    className='section-shell section-shell-alt'
+  >
+    <div className='container mx-auto max-w-7xl px-6'>
+      <div className='contact-panel grid gap-8 overflow-hidden rounded-[1.75rem] border border-white/10 p-6 sm:p-9 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:p-12'>
+        <div>
+          <p className='section-kicker'>Have a good one in mind?</p>
+          <h2 className='mt-3 max-w-xl text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl'>
+            Let&apos;s build something <span className='text-gradient'>people love to use.</span>
+          </h2>
+          <p className='mt-4 max-w-lg text-sm leading-6 text-slate-400 sm:text-base'>
+            I&apos;m open to frontend and full-stack roles, freelance projects, and thoughtful collaborations.
+            Tell me what you&apos;re working on.
+          </p>
 
-          <div>
-            <label htmlFor='email' className='block text-gray-300 mb-2'>Your Email</label>
-            <input
-            className='w-full bg-dark-300 rounded-lg
-            px-4 py-3 outline-none '
-            type="email"
-            />
-          </div>
-
-          <div>
-            <label htmlFor='message' className='block text-gray-300 mb-2'>Your Message</label>
-            <textarea
-            className='w-full h-40 bg-dark-300 rounded-lg
-            px-4 py-3 outline-none '
-            type="text"
-            />
-          </div>
-
-          <button
-          type='submit'
-          className='w-full px-6 py-3 bg-purple 
-          rounded-lg font-medium hover:bg-purple-700 
-          transition duration-300 cursor-pointer'
+          <a
+            href='mailto:khadkabinisha48@gmail.com?subject=Let%27s%20work%20together'
+            className='button-primary mt-7 inline-flex items-center gap-2 rounded-xl px-5 py-3.5 font-semibold text-slate-950'
           >
-            Send 
-          </button>
-        </form>
+            Start a conversation <FaArrowUpRightFromSquare aria-hidden='true' />
+          </a>
+
+          <div className='mt-8 flex gap-3'>
+            <a href={socialLinks[0].url} target='_blank' rel='noreferrer' aria-label='GitHub profile' className='flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-200/40 hover:text-white'>
+              <FaGithub aria-hidden='true' />
+            </a>
+            <a href={socialLinks[1].url} target='_blank' rel='noreferrer' aria-label='LinkedIn profile' className='flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-200/40 hover:text-white'>
+              <FaLinkedin aria-hidden='true' />
+            </a>
+          </div>
         </div>
-      
 
-      {/* contact info */}
-      <div className='space-y-8'>
-        <div className='flex items-start'>
-          <div className='text-purple text-2xl mr-4'>
-           <FaMapMarkerAlt />
-          </div>
-          <div >
-            <h3 className="text-lg font-semibold mb-2">Location</h3>
-            <p className="text-gray-400">Kathmandu, Nepal</p>
-          </div>
-         </div>
-         <div className='flex items-start'>
-          <div className='text-purple text-2xl mr-4'>
-           <FaEnvelope />
-          </div>
-          <div >
-            <h3 className="text-lg font-semibold mb-2">Email</h3>
-            <p className="text-gray-400">khadkabinisha48@gmail.com</p>
-          </div>
-         </div>
-         
-         <div className='flex items-start'>
-          <div className='text-purple text-2xl mr-4'>
-           <FaPhone />
-          </div>
-          <div >
-            <h3 className="text-lg font-semibold mb-2">Phone</h3>
-            <p className="text-gray-400">+977 9846900867</p>
-          </div>
-         </div>
+        <div className='flex flex-col justify-center gap-3'>
+          {contactItems.map(({ icon, label, value, href }) => {
+            const content = (
+              <>
+                <span className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-200/[0.08] text-cyan-200'>
+                  {React.createElement(icon, { 'aria-hidden': true })}
+                </span>
+                <span className='min-w-0'>
+                  <span className='block text-xs text-slate-500'>{label}</span>
+                  <span className='mt-0.5 block break-words text-sm font-medium text-slate-200'>{value}</span>
+                </span>
+              </>
+            );
 
-         <div className='pt-4'>
-         <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
-          <div className='flex space-x-4 '>
-            <a href={socialLinks[0].url} className='w-12 h-12 rounded-full bg-dark-300 flex items-center justify-center text-purple hover:bg-purple hover:text-white transition duration-300'>
-            <FaGithub />
-            </a>
-
-              
-            <a href={socialLinks[1].url} className='w-12 h-12 rounded-full bg-dark-300 flex items-center justify-center text-blue-400 hover:bg-blue-400 hover:text-white transition duration-300'>
-            <FaLinkedin />
-            </a>
-          
-
-          </div>
-         </div>
-      </div>
+            return href ? (
+              <a key={label} href={href} className='flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.035] p-4 transition hover:border-cyan-200/25 hover:bg-white/[0.06]'>
+                {content}
+              </a>
+            ) : (
+              <div key={label} className='flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.035] p-4'>
+                {content}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
-    </motion.div>
-    )
-    }
-export default Contact
+  </motion.section>
+);
 
-
+export default Contact;

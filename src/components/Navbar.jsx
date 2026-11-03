@@ -1,95 +1,91 @@
+import React from 'react';
+import { FaArrowUpRightFromSquare, FaBars, FaXmark } from 'react-icons/fa6';
 
-
-import React from 'react'
-import { FaBars } from 'react-icons/fa'
-import { FaXmark } from 'react-icons/fa6'
+const navLinks = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Education', href: '#education' },
+];
 
 function Navbar() {
   const [showMenu, setShowMenu] = React.useState(false);
-  return (
-    <nav className='fixed w-full z-50 bg-dark-100/90 backdrop-blur-sm py-4 px-8 shadow-lg'>
-    <div  className='container mx-auto flex justify-between items-center'>
-     <div>
-      <a href="#" className='text-3xl font-bold text-white'>
-        sovitha
-        <span className='text-purple'> Khadka</span>
-        <div className='w-4 h-4 bg-purple rounded-full'></div>
-      </a>
-     </div>
-     <div className='hidden md:flex space-x-10'>
-      <a href="#home" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Home</span>
-        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-purple transition-all duration-300 group-hover:w-full'></span>
-      </a>
-      <a href="#about" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>About</span>
-        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-purple transition-all duration-300 group-hover:w-full'></span>
-      </a>
-      <a href="#skills" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Skills</span>
-        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-purple transition-all duration-300 group-hover:w-full'></span>
-      </a>
-      <a href="#projects" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Projects</span>
-        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-purple transition-all duration-300 group-hover:w-full'></span>
-      </a>
-      <a href="#education" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Education</span>
-        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-purple transition-all duration-300 group-hover:w-full'></span>
-      </a>
-      <a href="#contact" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Contact</span>
-        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-purple transition-all duration-300 group-hover:w-full'></span>
-      </a>
-      </div>
-      {/* mobile view */}
-      <div className="md:hidden"> 
-        {
-          showMenu ?
-           <FaBars onClick={()=>setShowMenu(!showMenu)} className='text-2xl cursor-pointer'/>:
-           <FaXmark  onClick={()=>setShowMenu(!showMenu)} className='text-2xl cursor-pointer' />
-        }
-       
-        
-      </div>
-    </div>
-    
-    {/* mobile menus */}
-    {
-      showMenu &&(
-        <div className='md:hidden mt-4 bg-dark h-screen rounded-lg p-4 flex flex-col space-y-4 text-center justify-center'>
-           <a onClick={()=> setShowMenu(!showMenu)} href="#home" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Home</span>
-        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-purple transition-all duration-300 group-hover:w-full'></span>
-      </a>
-      <a onClick={()=> setShowMenu(!showMenu)}
-       href="#about" className='relative text-white/80
-        transition duration-300 hover:text-purple group' >
-        <span>About</span>
-        
-      </a>
-      <a onClick={()=> setShowMenu(!showMenu)} href="#skills" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Skills</span>
-        
-      </a>
-      <a onClick={()=> setShowMenu(!showMenu)} href="#projects" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Projects</span>
-        
-      </a>
-      <a onClick={()=> setShowMenu(!showMenu)} href="#experience" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Experience</span>
-        
-      </a>
-      <a onClick={()=> setShowMenu(!showMenu)} href="#contact" className='relative text-white/80 transition duration-300 hover:text-purple group' >
-        <span>Contact</span>
-        
-      </a>
-        </div>
-      )
-    }
 
-    </nav>
-  )
+  React.useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setShowMenu(false);
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, []);
+
+  const closeMenu = () => setShowMenu(false);
+
+  return (
+    <header className='site-header fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6'>
+      <nav className='nav-shell mx-auto max-w-7xl rounded-2xl border border-white/10 px-4 sm:px-5'>
+        <div className='flex h-[60px] items-center justify-between'>
+          <a href='#home' onClick={closeMenu} className='text-lg font-bold tracking-tight text-white sm:text-xl'>
+            Sovitha<span className='text-cyan-300'>.</span>
+          </a>
+
+          <div className='hidden items-center gap-1 md:flex'>
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className='rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/[0.06] hover:text-white'
+              >
+                {link.name}
+              </a>
+            ))}
+            <a href='#contact' className='button-primary ml-2 inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-950'>
+              Hire me <FaArrowUpRightFromSquare aria-hidden='true' />
+            </a>
+          </div>
+
+          <button
+            type='button'
+            onClick={() => setShowMenu((open) => !open)}
+            className='inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] text-lg text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300 md:hidden'
+            aria-label={showMenu ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={showMenu}
+            aria-controls='mobile-navigation'
+          >
+            {showMenu ? <FaXmark aria-hidden='true' /> : <FaBars aria-hidden='true' />}
+          </button>
+        </div>
+
+        {showMenu && (
+          <div id='mobile-navigation' className='mobile-nav-panel mb-3 border-t border-white/10 pt-3 md:hidden'>
+            <div className='grid grid-cols-2 gap-2'>
+              {navLinks.map((link, index) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className='flex min-h-12 items-center gap-3 rounded-xl px-3 text-sm font-medium text-slate-300 transition hover:bg-white/[0.07] hover:text-white'
+                >
+                  <span className='font-mono text-xs text-cyan-300/70'>0{index + 1}</span>
+                  {link.name}
+                </a>
+              ))}
+            </div>
+            <a
+              href='#contact'
+              onClick={closeMenu}
+              className='button-primary mt-3 flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-semibold text-slate-950'
+            >
+              Let&apos;s work together <FaArrowUpRightFromSquare aria-hidden='true' />
+            </a>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
 }
 
-export default Navbar
+export default Navbar;

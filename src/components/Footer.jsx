@@ -1,16 +1,16 @@
-
-
-
 import React from 'react';
 
-const Footer = () => {    
-  return (
-    <div className="py-8 bg-dark-300">
-      <div className='container mx-auto px-6      text-center'>
-        <p className='text-gray-400'> © 2025 created by Sovitha Khadka. All rights reserved.</p>
-      </div>
+const Footer = () => (
+  <footer className='border-t border-white/[0.08] bg-[#080b11] py-6'>
+    <div className='container mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-center sm:flex-row sm:text-left'>
+      <a href='#home' className='font-semibold tracking-tight text-white'>
+        Sovitha<span className='text-cyan-300'>.</span>
+      </a>
+      <p className='text-xs text-slate-500'>
+        © {new Date().getFullYear()} Sovitha Khadka. All rights reserved.
+      </p>
     </div>
+  </footer>
+);
 
-  )
-}
-export default Footer;   
+export default Footer;

@@ -1,60 +1,53 @@
-
-
-import React from 'react'
-import  { motion } from 'framer-motion'
-import { skills } from '../assets/assets.js'
+import React from 'react';
+// Used in JSX below; this rule may not recognize JSX member expressions.
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
+import { skills } from '../assets/assets.js';
 
 function Skills() {
   return (
-    <motion.div
-     initial={{opacity:0 ,y:50}}
-      whileInView={{opacity:1, y:0}}
-      transition={{duration:0.9, ease:'easeOut'}}
-      viewport={{once:false, amount:0.2}}
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.05 }}
       id='skills'
-      className='py-20 bg-dark-100'
+      className='section-shell'
     >
-      <div className='container mx-auto px-6'>
-        <h2 className='text-3xl font-bold text-center mb-4'>
-          My
-          <span className='text-purple'> Skills</span>
-        </h2>
-          <p className='text-gray-400 text-center max-w-2xl mx-auto mb-16'>
-           Technologies I work to bring ideas to life
+      <div className='container mx-auto max-w-7xl px-6'>
+        <div className='section-heading mb-10 sm:mb-12'>
+          <p className='section-kicker'>My toolkit</p>
+          <h2 className='mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl'>
+            Skills for the <span className='text-gradient'>whole stack</span>
+          </h2>
+          <p className='mt-3 max-w-xl text-sm leading-6 text-slate-400 sm:text-base'>
+            The tools and practices I use to take a product from the first interface to a reliable release.
           </p>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-          gap-8 max-w-5xl mx-auto'>
+        </div>
 
-            {
-              skills.map((Skill, index) => (
-                <div key={index}
-                 className='bg-dark-200 rounded-2xl p-6
-                 hover:translate-y-2 transition duration-300
-                  cursor-pointer'>
-                  <div className='flex items-center mb-4'>
-                    <Skill.icon className='w-12 h-12 text-purple mr-6'/>
-                    <h3 className='text-xl font-semibold'>
-                      {Skill.title}</h3>
-
-                  </div>
-                  <p className='text-gray-400 mb-4'>{Skill.description}</p>
-                  <div className=' flex flex-wrap gap-2'>
-                    {Skill.tags.map((tech) => (
-                      <span key={tech} 
-                      className=" px-3 py-1 bg-dark-400 rounded-full text-sm">
-                        {tech}
-                        </span>
-                    ))}
-                </div>
-                </div>
-              ))
-            }
-
-          </div>
-        </div>    
-
-    </motion.div>
-  )
+        <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+          {skills.map((skill) => (
+            <article key={skill.title} className='rounded-2xl border border-white/[0.08] bg-white/[0.035] p-5 transition hover:border-cyan-200/25 hover:bg-white/[0.055] sm:p-6'>
+              <div className='flex items-center gap-4'>
+                <span className='flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-200/15 bg-cyan-200/[0.07]'>
+                  <skill.icon className='h-5 w-5 text-cyan-200' aria-hidden='true' />
+                </span>
+                <h3 className='text-lg font-semibold text-white'>{skill.title}</h3>
+              </div>
+              <p className='mt-4 text-sm leading-6 text-slate-400'>{skill.description}</p>
+              <div className='mt-5 flex flex-wrap gap-2'>
+                {skill.tags.map((tech) => (
+                  <span key={tech} className='rounded-md bg-slate-800/80 px-2.5 py-1 text-xs text-slate-300'>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
 }
 
-export default Skills
+export default Skills;

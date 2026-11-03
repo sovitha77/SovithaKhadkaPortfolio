@@ -1,51 +1,58 @@
-
-
-import React from 'react';
+// Used in JSX below; this rule may not recognize JSX member expressions.
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
-
-const Education = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, ease: 'easeOut' }}
-      viewport={{ once: false, amount: 0.2 }}
-      id='education'
-      className='py-20 bg-dark-200'
-    >
-      <div className='container mx-auto px-6'>
-        <h2 className='text-3xl font-bold text-center mb-4'>  
-          My <span className='text-purple'>Education</span>
-        </h2>
-        <p className='text-gray-400 text-center max-w-2xl mx-auto mb-16'>
-          A summary of my academic background and qualifications.
+const Education = () => (
+  <motion.section
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.65, ease: 'easeOut' }}
+    viewport={{ once: true, amount: 0.05 }}
+    id='education'
+    className='section-shell'
+  >
+    <div className='container mx-auto max-w-7xl px-6'>
+      <div className='mb-10 sm:mb-12'>
+        <p className='section-kicker'>Learning &amp; growth</p>
+        <h2 className='mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl'>Education</h2>
+        <p className='mt-3 max-w-xl text-sm leading-6 text-slate-400 sm:text-base'>
+          Academic foundations and continued learning in software development.
         </p>
-        <div className='max-w-4xl mx-auto space-y-8'>
-          {/* Education Item 1 */}
-          <div className='bg-dark-300 rounded-2xl p-6'>
-            <h3 className='text-xl font-semibold mb-2'>Bachelor in Information Technology</h3>
-            <span className='text-purple'>Padmakanya Multiple Campus </span> | baghbazar,kathmandu <span className='text-gray-400'>  2022- present</span>
-            <p className='text-gray-300 mt-4'>
-              Focusing on software development, data structures, and algorithms. Completed project on web application development.
-            </p>  
-          </div>
-          {/* Education Item 2 */}
-          <div className='bg-dark-300 rounded-2xl p-6'>
-            <h3 className='text-xl font-semibold mb-2'>High School </h3>
-            <span className='text-purple'>National School of Sciences </span> | lainchour,kathmandu <span className='text-gray-400'>  2019-2021</span>
-            <p className='text-gray-300 mt-4'>
-              Science stream 
-            </p>
-          </div>
-          <div className='bg-dark-300 rounded-2xl p-6'>
-            <h3 className='text-xl font-semibold mb-2'>School level </h3>
-            <span className='text-purple'>Manakamana English Boarding School </span> | Beshishar, lamjung <span className='text-gray-400'>  2019</span>
-            
-          </div>
-        </div>
       </div>
-    </motion.div>
-  );
-}
+
+      <div className='mx-auto grid max-w-5xl gap-4 md:grid-cols-2'>
+        <article className='rounded-2xl border border-white/[0.08] bg-white/[0.035] p-5 sm:p-6'>
+          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200'>2022 - 2026</p>
+          <h3 className='mb-2 mt-3 text-xl font-semibold text-white'>Bachelor in Information Technology</h3>
+          <p className='text-sm text-slate-300'>
+            Padmakanya Multiple Campus <span className='text-slate-500'>· Kathmandu, Nepal</span>
+          </p>
+          <p className='mt-4 text-sm leading-6 text-slate-400'>
+            Focused on software development, data structures, algorithms, and practical web application building.
+          </p>
+        </article>
+
+        <article className='rounded-2xl border border-white/[0.08] bg-white/[0.035] p-5 sm:p-6'>
+          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200'>2019 - 2021</p>
+          <h3 className='mb-2 mt-3 text-xl font-semibold text-white'>+2 Science</h3>
+          <p className='text-sm text-slate-300'>
+            National School of Sciences <span className='text-slate-500'>· Kathmandu, Nepal</span>
+          </p>
+          <p className='mt-4 text-sm leading-6 text-slate-400'>
+            Science stream with a strong foundation in mathematics and technical subjects.
+          </p>
+        </article>
+
+        <article className='rounded-2xl border border-white/[0.08] bg-white/[0.035] p-5 sm:col-span-2 sm:p-6'>
+          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200'>2019</p>
+          <h3 className='mb-2 mt-3 text-xl font-semibold text-white'>School Level</h3>
+          <p className='text-sm text-slate-300'>
+            Manakamana English Boarding School <span className='text-slate-500'>· Beshishar, Lamjung</span>
+          </p>
+        </article>
+      </div>
+    </div>
+  </motion.section>
+);
+
 export default Education;
